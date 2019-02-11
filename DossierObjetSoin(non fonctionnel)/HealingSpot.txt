@@ -1,0 +1,124 @@
+package jeu;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.tiled.TiledMap;
+
+import sys.Point;
+public class HealingSpot{
+	int value;
+    // gestion des collisions
+
+    private Rectangle box;
+    private boolean collision = false;
+    private int x;
+
+    private int y;
+
+
+
+    // taille de la tile
+
+    private int width;
+
+    private int height;
+
+    private int centerX;
+
+    private int centerY;
+    
+	public HealingSpot(String nom, int w, int h,int value) {
+		this.width=w;
+		this.height=h;
+        this.x = x;
+        this.y = y;
+        this.centerX = (int)(w / 2);
+        this.centerY = (int)(h - (h / 5));
+        box = new Rectangle(x - this.centerX, y - this.centerY, w, h);
+        this.value= value;
+    }
+    public HealingSpot(String nom, Point pos, int w, int h,int value) {
+		this.width=w;
+		this.height=h;
+		this.x = pos.getX();
+		this.y = pos.getY();
+        this.value= value;
+        this.centerX = (int)(w / 2);
+        this.centerY = (int)(h - (h / 5));
+        box = new Rectangle(x - this.centerX, y - this.centerY, w, h);
+        this.value= value;
+
+    }
+    public float getX() {
+
+        return this.x;
+
+    }
+
+
+
+    public float getY() {
+
+        return this.y;
+
+    }
+    public Rectangle getBoundingBox() {
+
+        return this.box;
+
+    }
+    public int getWidth() {
+
+        return width;
+
+    }
+
+
+
+    public void setWidth(int width) {
+
+        this.width = width;
+
+    }
+
+
+
+    public int getHeight() {
+
+        return height;
+
+    }
+
+
+
+    public void setHeight(int height) {
+
+        this.height = height;
+
+    }
+    public boolean iscollisionLogic(TiledMap map, float x, float y) {
+
+        int tileW = map.getTileWidth();
+
+        int tileH = map.getTileHeight();
+
+
+
+        int logicLayer = map.getLayerIndex("solide");
+
+        Image tile = map.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
+
+        boolean collision = tile != null;
+
+        if(collision) {
+
+            Color color = tile.getColor((int) x % tileW, (int) y % tileH);
+
+            collision = color.getAlpha() > 0;
+
+        }
+
+        return collision;
+
+    }
+}
