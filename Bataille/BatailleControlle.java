@@ -23,9 +23,10 @@ public class BatailleControlle implements InputProviderListener {
 
 	@Override
 	public void controlPressed(Command commande) {
-		if (this.mode == BatailleCommande.NONE)
+		if (this.mode == BatailleCommande.NONE) {
 			this.mode = (BatailleCommande) commande;
 			attaquer();
+		}
 	}
 
 	private void attaquer() {
@@ -63,16 +64,45 @@ public class BatailleControlle implements InputProviderListener {
 			      endPlayerAttack();
 			    }
 			  };
+		  AnimationListener ennemiAssignDamage = new AnimationListener() {
+				    @Override
+				    public void on() {
+				    	ennemiAssignDamage();
+				    }
+				  };
+		  AnimationListener endEnnemiAttack = new AnimationListener() {
+					    @Override
+					    public void on() {
+					    	endEnnemiAttack();
+					    }
+					  };
 			  this.joueur.addAnimationListener(playerAssignDamage,endPlayerAttack);
 			}
 	  private void playerAssignDamage() {ennemi.setBarreVie(10); }
 	  private void endPlayerAttack() { 	
 		  if(ennemi.getBarreVie()<= 0) {
 			  game.enterState(YouWin.YouWin);
-		  }
+			  mode = BatailleCommande.NONE;
+		  } else { 
+			    switch (mode) { 
+			    case ATTAQUER: 
+			      ennemi.attaquer(joueur); 
+			      break; 
+			    default: 
+			      // Fin de cette étape de combat, réinitialisation
+			      mode = BatailleCommande.NONE;
+			      break; 
+			    } 
+			  } 
 		  joueur.setBarreVie(10);
 		  mode = BatailleCommande.NONE;
 
 	  }
-	
+	  private void ennemiAssignDamage() {joueur.setBarreVie(10); }
+	  private void endEnnemiAttack() { 
+		  if (joueur.getBarreVie() <= 0) {
+		    game.enterState(GameOver.GameOver); 
+		  }
+		  mode = BatailleCommande.NONE;
+		  } 
 }

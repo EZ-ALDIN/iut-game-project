@@ -39,4 +39,3 @@ public class BatailleEnnemi {
 		barreVie= barreVie-degat;
 	}
 }
-
