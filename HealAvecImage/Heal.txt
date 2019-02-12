@@ -1,0 +1,23 @@
+//A mettre dans heal
+
+import .....
+
+	private Image  soin;
+	
+	public Heal(.....
+
+
+
+....
+    public void init() throws SlickException{
+		soin = new Image("data/magic-symbols-card-captor.jpg");
+    }
+    
+    public void afficher(Graphics g) {
+    	if (!estPris) {
+    		soin.draw(x - centerX, y - centerY, width, height);
+    	}
+    }
+
+//A mettre dans EcranJeu
+        scenario.getHeals().init();
