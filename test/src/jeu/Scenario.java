@@ -11,8 +11,6 @@ import sys.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sys.InterStateComm.isBattleVictory;
-
 // comment gérer le scenario
 public class Scenario {
 
