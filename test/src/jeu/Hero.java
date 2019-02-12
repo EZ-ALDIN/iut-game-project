@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 import sys.EcranJeu;
+import sys.InterStateComm;
 import sys.Point;
 import sys.Taille;
 
@@ -109,13 +110,11 @@ public class Hero extends Personnage {
     private boolean isCollisionEnnemi(float x, float y) {
         for(Ennemi unEnnemi : lesEnnemis) {
             boolean collision = new Rectangle(x - 16, y - 20, 32, 32).intersects(unEnnemi.getBoundingBox());
-            if(collision) {
+            if(collision && !unEnnemi.isMort() ) {
                 // --
                 System.out.println("Fight");
+                InterStateComm.setBattleEnnemy(unEnnemi);
                 EcranJeu.gameState.enterState(Bataille.ID);
-
-
-
                 return true;
             }
         }

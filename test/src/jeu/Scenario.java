@@ -6,13 +6,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import retest.Dragon;
-import sys.Direction;
-import sys.EcranJeu;
-import sys.Point;
-import sys.Taille;
+import sys.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static sys.InterStateComm.isBattleVictory;
 
 // comment gérer le scenario
 public class Scenario {
@@ -94,8 +93,7 @@ public class Scenario {
         lesEnnemis.add(uneChauve);
     }
 
-    public List<Ennemi> getLesEnnemis() {
-        return lesEnnemis;
+    public List<Ennemi> getLesEnnemis() {  return lesEnnemis;
     }
 
     public List<PersonnageNonJoueur> getLesPnj() {

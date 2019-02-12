@@ -27,7 +27,7 @@ public class Ennemi extends Personnage {
 
     private Hero lehero; // --
     private List<Personnage> lesPersonnages;
-    private boolean mort;
+    boolean mort;
 
     private boolean collid = false;
 

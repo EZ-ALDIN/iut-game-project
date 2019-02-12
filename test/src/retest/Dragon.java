@@ -31,7 +31,7 @@ public final class Dragon {
         super();
     }
 
-    public final static Hero getLeHero() {
+    public static Hero getLeHero() {
         if(Dragon.leHero == null) {
 
         }

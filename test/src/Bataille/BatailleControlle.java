@@ -1,10 +1,12 @@
 package Bataille;
 
+import jeu.Scenario;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
 import sys.EcranJeu;
+import sys.InterStateComm;
 
 public class BatailleControlle implements InputProviderListener {
 	private BatailleEnnemi ennemi ;
@@ -65,7 +67,8 @@ public class BatailleControlle implements InputProviderListener {
 	  private void playerAssignDamage() {ennemi.setBarreVie(10); }
 	  private void endPlayerAttack() { 	
 		  if(ennemi.getBarreVie()<= 0) {
-			  //game.enterState(YouWin.YouWin);
+			  System.out.println("Victory");
+			  InterStateComm.battleEnnemyDead();
 			  game.enterState(EcranJeu.ID);
 		  }
 
