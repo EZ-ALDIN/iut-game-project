@@ -89,7 +89,7 @@ public class EcranJeu extends BasicGameState {
         if(scenario != null) {
             scenario.afficherPnj(graphics, this.lesMessages);;
             scenario.afficherEnnemis(graphics);
-            scenario.afficherHeal(graphics);
+            // scenario.afficherHeal(graphics);
         }
 
         // Affichage du hero
